@@ -1,4 +1,4 @@
 .Button {
-  @apply bg-white text-black rounded-sm font-semibold text-lg p-2 border-2 border-transparent;
+  @apply bg-white text-black rounded-md font-semibold text-lg p-2 border-2 border-transparent;
   height: 50px;
 }

@@ -1,5 +1,5 @@
 .Results {
-  &__content-card {
-    @apply bg-green-600 my-4;
+  &__content {
+    @apply bg-green-600 my-4 rounded-md p-4 shadow;
   }
 }
