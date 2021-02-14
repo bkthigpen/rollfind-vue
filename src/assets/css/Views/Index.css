@@ -1,0 +1,7 @@
+.Index {
+  &__vue-logo{
+    @apply inline-block;
+    width: 75px;
+    min-height: 50px;
+  }
+}

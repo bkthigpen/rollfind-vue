@@ -1,0 +1,4 @@
+.TextInput{
+  @apply p-2 rounded-sm text-black placeholder-black border-2 border-transparent mr-2 w-full;
+  min-height: 50px;
+}

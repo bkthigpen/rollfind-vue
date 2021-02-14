@@ -1,14 +1,11 @@
 <template>
-  <div class="TextInput">
-    <input
-      type="text"
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
-      :placeholder="placeholder"
-      class="p-1 border-1 rounded-sm text-black placeholder-black"
-    />
-    <slot />
-  </div>
+  <input
+    type="text"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+    :placeholder="placeholder"
+    class="TextInput"
+  />
 </template>
 
 <script>
@@ -19,9 +16,13 @@ export default {
       type: String,
       default: "Search"
     },
+    inputClass: {
+      type: String,
+      default: ""
+    },
     placeholder: {
       type: String,
-      default: "Enter D&D keyword"
+      default: "Kolbold, Fire, Wizards"
     },
     modelValue: {
       type: String,

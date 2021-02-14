@@ -1,2 +1,7 @@
 @import './tailwind.css';
+@import './Abstracts/Fonts.css';
 @import './Components/Button.css';
+@import './Components/TextInput.css';
+@import './Components/Results.css';
+@import './Views/Index.css';
+
