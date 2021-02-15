@@ -1,7 +1,21 @@
 .Index {
+  @apply transition ease-in duration-300;
+
   &__vue-logo{
     @apply inline-block;
-    width: 75px;
-    min-height: 50px;
+    width: 45px;
+    margin-top: -10px;
+  }
+
+  &__form {
+    @apply px-4 py-36 md:py-96 transition ease-in;
+  }
+
+  &__form--slide-up {
+    transform: translateY(-5rem);
+
+    @screen lg {
+      transform: translateY(-10rem);
+    }
   }
 }

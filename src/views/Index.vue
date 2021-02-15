@@ -1,10 +1,13 @@
 <template>
-  <div class="Index grid md:grid-cols-2">
-    <form class="Index__form transform md:translate-x-1/2 py-96">
+  <div class="Index">
+    <form
+      class="Index__form"
+      :class="{ 'Index__form--slide-up': searchResults }"
+    >
       <h1 class="my-2 text-center">
         <span class="text-blue-100">Roll</span>
-        <span class="text-yellow-400 mr-2">Find</span>
-        <img class="Index__vue-logo" src="../assets/images/vue.png" />
+        <span class="text-yellow-400 mr-2">Find </span>
+        <img class="Index__vue-logo" src="../assets/images/vue.png" alt="Vue" />
       </h1>
       <p class="w-full text-2xl text-center">
         Quick search of ⚔️ D&D rules, stats, details, and general info.
@@ -14,7 +17,7 @@
         <Button @click="getSearchResults" />
       </div>
       <div class="Results mt-4">
-        <p>{{ searchResults.count }} found</p>
+        <p>{{ searchResults.count || 0 }} found</p>
         <div
           v-for="(result, index) in searchResults.results"
           :key="index"
@@ -29,15 +32,23 @@
               <strong>Route</strong>: {{ formatRoute(result.route) }}
             </p>
             <br />
-            {{ result }}
+            <!-- {{ result }} -->
           </div>
         </div>
       </div>
     </form>
-    <div v-if="detailedResults" class="DetailedResults">
-      <div class="px-4 pt-10">
-        {{ detailedResults }}
-      </div>
+    <div
+      class="DetailedResults"
+      :class="{ 'DetailedResults--opened': detailedResults }"
+    >
+      <template v-if="detailedResults">
+        <button @click="resetResults">
+          Close
+        </button>
+        <div class="px-4 pt-10 transition ease-in-out duration-300">
+          {{ detailedResults }}
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -83,11 +94,17 @@ export default {
       return newUrl;
     };
 
+    const resetResults = () => {
+      searchResults.value = "";
+      detailedResults.value = "";
+    };
+
     return {
       detailedResults,
       formatRoute,
       getDetailedResults,
       getSearchResults,
+      resetResults,
       search,
       searchResults
     };
