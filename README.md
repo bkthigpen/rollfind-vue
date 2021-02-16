@@ -1,6 +1,10 @@
-# rollfind-vue
+# RollFind Vue
 
-## Project setup
+## Overview
+I created this project based off the [RollFind](https://rollfind.joshuasoileau.com/) app by [Joshua Soileau](https://github.com/JoshuaSoileau), with the main intent being to test out Vue 3's [Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html) on a scalable project. Look forward to future developments and features.
+
+## Commands
+
 ```
 npm install
 ```
