@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-// import Home from "../views/Home.vue";
 import Index from "../views/Index.vue";
 
 const routes = [
@@ -8,11 +7,7 @@ const routes = [
     name: "Index",
     component: Index
   }
-  // {
-  //   path: "/",
-  //   name: "Home",
-  //   component: Home
-  // }
+  // good example for later
   // {
   //   path: "/about",
   //   name: "About",

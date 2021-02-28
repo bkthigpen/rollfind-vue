@@ -21,15 +21,19 @@
         <div
           v-for="(result, index) in searchResults.results"
           :key="index"
-          class="Results__content my-4"
+          class="Results__card my-4"
+          :class="setClass('Results__card-', result.route)"
         >
           <div @click="getDetailedResults(result.route, result.slug)">
             <p>
               <strong>{{ result.name }}</strong>
             </p>
             <p class="truncate ..."><strong>Text</strong>: {{ result.text }}</p>
-            <p class="capitalize">
-              <strong>Route</strong>: {{ formatRoute(result.route) }}
+            <p
+              class="Results__category mt-4"
+              :class="setClass('Results__category-', result.route)"
+            >
+              {{ formatRoute(result.route) }}
             </p>
             <br />
             <!-- {{ result }} -->
@@ -46,7 +50,16 @@
           Close
         </button>
         <div class="px-4 pt-10 transition ease-in-out duration-300">
-          {{ detailedResults }}
+          <!-- Fun data parsing for undocumented data -_- -->
+          <!-- {{ detailedResults }} -->
+          <br />
+          <br />
+          <br />
+          <p>Name: {{ detailedResults.name }}</p>
+          <p>Group: {{ detailedResults.group }}</p>
+          <p>Alignment: {{ detailedResults.alignment }}</p>
+          <p>Armor Class: {{ detailedResults.armor_class }}</p>
+          <p>Special Abilities: {{ detailedResults.special_abilities }}</p>
         </div>
       </template>
     </div>
@@ -87,11 +100,19 @@ export default {
       newUrl = newUrl.replace("/", "");
 
       // maybe rework this?
-      if (newUrl === "magicitems") {
+      if (newUrl.toLowerCase() === "magicitems") {
         newUrl = newUrl.split("c").join("c ");
       }
 
       return newUrl;
+    };
+
+    const setClass = (component, category) => {
+      let newCatory = category;
+
+      newCatory = newCatory.replace("/", "");
+
+      return `${component}${newCatory}`;
     };
 
     const resetResults = () => {
@@ -106,7 +127,8 @@ export default {
       getSearchResults,
       resetResults,
       search,
-      searchResults
+      searchResults,
+      setClass
     };
   }
 };

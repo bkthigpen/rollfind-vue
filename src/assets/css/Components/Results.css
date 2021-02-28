@@ -1,7 +1,52 @@
 .Results {
   @apply transition duration-300 ease-in-out;
 
-  &__content {
-    @apply bg-green-600 my-4 rounded-md p-4 shadow;
+  &__card {
+    @apply bg-green-700 my-4 rounded-md p-4 shadow;
+  }
+
+  &__category {
+    @apply capitalize font-bold text-center bg-gray-400 rounded p-2 w-28;
+  }
+  
+  /* write a loop for these once I find out how to use sass loops in post css */
+  &__card-monsters {
+    @apply bg-purple-700;
+  }
+
+  &__category-monsters {
+    @apply bg-purple-400;
+  }
+
+  &__card-spells {
+    @apply bg-blue-700;
+  }
+
+  &__category-spells {
+    @apply bg-blue-400;
+  }
+
+  &__card-magicitems {
+    @apply bg-indigo-700;
+  }
+
+  &__category-magicitems {
+    @apply bg-indigo-400;
+  }
+
+  &__card-races {
+    @apply bg-gray-700;
+  }
+
+  &__category-races {
+    @apply bg-gray-400;
+  }
+
+  &__card-sections {
+    @apply bg-gray-700;
+  }
+
+  &__category-sections {
+    @apply bg-gray-400;
   }
 }
