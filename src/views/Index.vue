@@ -78,21 +78,20 @@
               </p>
             </template>
           </div>
-          <div class="flex text-center mt-4">
-            <p class="DetailedResults__ac">
-              <span class="absolute inset-1/2 z-10 transform rotate-45 w-full">
+          <!-- <div class="text-center"> -->
+          <div class="flex">
+            <div class="relative">
+              <div class="DetailedResults__ac" />
+              <p
+                class="absolute left-1/2 transform -translate-x-1/2 text-center font-bold top-16"
+              >
                 Hit Points
                 <br />
                 {{ detailedResults.hit_points }}
-              </span>
-            </p>
-            <p class="flex-1 bg-blue-700 rounded p-2 m-2 font-bold">
-              Armor Class
-              <br />
-              {{ detailedResults.armor_class }}
-            </p>
+              </p>
+            </div>
           </div>
-          <p>hit_points: {{ detailedResults.hit_points }}</p>
+          <!-- <p>hit_points: {{ detailedResults.hit_points }}</p>
           <p>hit_dice: {{ detailedResults.hit_dice }}</p>
           <p>strength: {{ detailedResults.strength }}</p>
           <p>dexterity: {{ detailedResults.dexterity }}</p>
@@ -100,7 +99,7 @@
           <p>strength: {{ detailedResults.intelligence }}</p>
           <p>wisdom: {{ detailedResults.wisdom }}</p>
           <p>charisma: {{ detailedResults.charisma }}</p>
-          <p>challenge_rating: {{ detailedResults.challenge_rating }}</p>
+          <p>challenge_rating: {{ detailedResults.challenge_rating }}</p> -->
           <br />
           <br />
           <div
