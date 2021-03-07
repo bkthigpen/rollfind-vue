@@ -1,3 +1,5 @@
+// a gross list of parsed data from the API endpoints since the documentation is not good
+
 <!-- <p><strong>name:</strong> {{ result.name }}</p>
         <p><strong>text:</strong> {{ result.text }}</p> -->
         <!-- <p v-if="result.highlighted">
