@@ -2,7 +2,7 @@
   @apply transition duration-300 ease-in-out;
 
   &__card {
-    @apply bg-green-700 my-4 rounded-md p-4 shadow;
+    @apply bg-green-700 my-4 rounded-md p-8 shadow;
   }
 
   &__category {

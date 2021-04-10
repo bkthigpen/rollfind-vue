@@ -7,9 +7,9 @@
       <section>
         <h1 class="my-2 text-center">
           <span class="text-blue-100">Roll</span>
-          <span class="text-yellow-400 mr-2">Find </span>
+          <span class="text-yellow-400">Find </span>
           <img
-            class="Index__vue-logo"
+            class="Index__vue-logo -ml-2 -mt-2"
             src="../assets/images/vue.png"
             alt="Vue"
           />
@@ -21,9 +21,9 @@
           <TextInput v-model="search" />
           <Button @click="getSearchResults" />
         </div>
-        <p>{{ searchResults.count || 0 }} found</p>
+        <p class="italic mt-2">{{ searchResults.count || 0 }} found</p>
       </section>
-      <section class="Results mt-4">
+      <section class="Results mt-8">
         <div
           v-for="(result, index) in searchResults.results"
           :key="index"
@@ -55,68 +55,109 @@
         <button @click="resetResults" class="DetailedResults__close-button" />
         <div class="DetailedResults__container">
           <!-- Fun data parsing for undocumented data -_- -->
-          <!-- <pre>{{ detailedResults }}</pre>
-          <br />
-          <br /> -->
           <h4 class="font-bold text-center">{{ detailedResults.name }}</h4>
+          <Button
+            @click="toggleDetailedResults = !toggleDetailedResults"
+            text="Debug"
+            class="Button--debug text-center"
+            role="button"
+          />
+          <template v-if="toggleDetailedResults">
+            <div class="relative h-64 bg-gray-900 overflow-auto mt-4 p-2">
+              <pre>{{ detailedResults }}</pre>
+            </div>
+          </template>
           <div
             v-if="detailedResults.group || detailedResults.alignment"
-            class="flex"
+            class="grid grid-cols-2 gap-4 text-center capitalize mt-4"
           >
             <template v-if="detailedResults.group">
-              <p
-                class="flex-1 font-bold bg-purple-700 rounded p-2 mt-4 text-center mr-1"
-              >
+              <p class="font-bold bg-purple-700 rounded px-4 py-2">
                 {{ detailedResults.group }}
               </p>
             </template>
             <template v-if="detailedResults.alignment">
-              <p
-                class="flex-1 font-bold bg-purple-400 rounded p-2 mt-4 capitalize text-center ml-1"
-              >
+              <p class="font-bold bg-purple-400 rounded px-4 py-2">
                 {{ detailedResults.alignment }}
               </p>
             </template>
           </div>
-          <!-- <div class="text-center"> -->
-          <div class="flex">
-            <div class="relative">
-              <div class="DetailedResults__hp" />
-              <p
-                class="absolute left-1/2 transform -translate-x-1/2 text-center font-bold top-16"
-              >
-                Hit Points
-                <br />
-                {{ detailedResults.hit_points }}
-              </p>
+          <div
+            v-if="detailedResults.hit_points || detailedResults.armor_class"
+            class="grid grid-cols-2 gap-4 text-center mt-4"
+          >
+            <div
+              v-if="detailedResults.hit_points"
+              class="bg-red-700 px-4 py-2 rounded"
+            >
+              <p class="font-bold">Hit Points</p>
+              <p>{{ detailedResults.hit_points }}</p>
             </div>
-            <div class="relative">
-              <div class="DetailedResults__ac">
-                <p>
-                  Armor Class
-                  <br />
-                  {{ detailedResults.armor_class }}
-                </p>
-              </div>
+            <div
+              v-if="detailedResults.armor_class"
+              class="bg-gray-400 px-4 py-2 rounded"
+            >
+              <p class="font-bold">Armor Class</p>
+              <p>{{ detailedResults.armor_class }}</p>
             </div>
           </div>
-          <!-- <p>hit_points: {{ detailedResults.hit_points }}</p>
-          <p>hit_dice: {{ detailedResults.hit_dice }}</p>
-          <p>strength: {{ detailedResults.strength }}</p>
-          <p>dexterity: {{ detailedResults.dexterity }}</p>
-          <p>constitution: {{ detailedResults.constitution }}</p>
-          <p>strength: {{ detailedResults.intelligence }}</p>
-          <p>wisdom: {{ detailedResults.wisdom }}</p>
-          <p>charisma: {{ detailedResults.charisma }}</p>
-          <p>challenge_rating: {{ detailedResults.challenge_rating }}</p> -->
-          <br />
-          <br />
+          <div class="grid grid-cols-2 xl:grid-cols-4 gap-4 text-center mt-4">
+            <div
+              v-if="detailedResults.strength"
+              class="bg-red-900 px-4 py-2 rounded"
+            >
+              <p class="font-bold">Strength</p>
+              <p>{{ detailedResults.strength }}</p>
+            </div>
+            <div
+              v-if="detailedResults.dexterity"
+              class="bg-green-900 px-4 py-2 rounded"
+            >
+              <p class="font-bold">Dexterity</p>
+              <p>{{ detailedResults.dexterity }}</p>
+            </div>
+            <div
+              v-if="detailedResults.constitution"
+              class="bg-blue-700 px-4 py-2 rounded"
+            >
+              <p class="font-bold">Constitution</p>
+              <p>{{ detailedResults.constitution }}</p>
+            </div>
+            <div
+              v-if="detailedResults.intelligence"
+              class="bg-blue-900 px-4 py-2 rounded"
+            >
+              <p class="font-bold">Intelligence</p>
+              <p>{{ detailedResults.intelligence }}</p>
+            </div>
+            <div
+              v-if="detailedResults.wisdom"
+              class="bg-indigo-700 px-4 py-2 rounded"
+            >
+              <p class="font-bold">Wisdom</p>
+              <p>{{ detailedResults.wisdom }}</p>
+            </div>
+            <div
+              v-if="detailedResults.charisma"
+              class="bg-yellow-700 px-4 py-2 rounded"
+            >
+              <p class="font-bold">Charisma</p>
+              <p>{{ detailedResults.charisma }}</p>
+            </div>
+            <div
+              v-if="detailedResults.challenge_rating"
+              class="bg-red-700 px-4 py-2 rounded"
+            >
+              <p class="font-bold">Challenge Rating</p>
+              <p>{{ detailedResults.challenge_rating }}</p>
+            </div>
+          </div>
           <div
             v-for="(ability, index) in detailedResults.special_abilities"
             :key="index"
-            class="SpecialAbilities mt-4"
+            class="SpecialAbilities mt-8"
           >
-            <p v-if="ability.name">
+            <p v-if="ability.name" class="font-bold">
               {{ ability.name }}
             </p>
             <p>{{ ability.desc }}</p>
@@ -144,6 +185,7 @@ export default {
     const searchResults = ref({});
     const detailedResults = ref("");
     const detailedResultsClass = ref("");
+    const toggleDetailedResults = ref(false);
 
     const getSearchResults = () => {
       axios
@@ -191,7 +233,8 @@ export default {
       resetResults,
       search,
       searchResults,
-      setClass
+      setClass,
+      toggleDetailedResults
     };
   }
 };

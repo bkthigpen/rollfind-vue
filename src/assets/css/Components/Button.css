@@ -1,4 +1,7 @@
 .Button {
   @apply bg-white text-black rounded-md font-semibold text-lg p-2 border-2 border-transparent;
-  height: 50px;
+}
+
+.Button--debug {
+  @apply bg-gray-700 text-white;
 }
