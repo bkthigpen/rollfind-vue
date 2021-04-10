@@ -1,6 +1,7 @@
 @import './tailwind.css';
 @import './Abstracts/Fonts.css';
 @import './Components/Button.css';
+@import './Components/LoaderSkeleton.css';
 @import './Components/TextInput.css';
 @import './Components/Results.css';
 @import './Components/DetailedResults.css';

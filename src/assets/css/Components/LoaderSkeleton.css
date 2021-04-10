@@ -1,0 +1,27 @@
+.LoaderSkeleton {
+  @apply relative transition duration-300 ease-in-out;
+
+  &__card {
+    @apply bg-gray-500 my-4 rounded-md p-8 shadow;
+    height: 200px;
+
+    &::before {
+      content: "";
+      @apply bg-gray-300 block rounded;
+      height: 35px;
+    }
+
+    &::before {
+      height: 35px;
+    }
+  }
+
+  &__pseudo-text {
+    &::before,
+    &::after {
+      content: "";
+      @apply bg-gray-300 block rounded mt-4;
+      height: 10px;
+    }
+  }
+}

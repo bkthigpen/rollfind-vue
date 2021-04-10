@@ -22,6 +22,19 @@
           <Button @click="getSearchResults" />
         </div>
         <p class="italic mt-2">{{ searchResults.count || 0 }} found</p>
+        <!-- Look at better way to do this -->
+        <div v-if="loadingResults">
+          <div class="h-screen">
+            <LoaderSkeleton />
+            <LoaderSkeleton />
+            <LoaderSkeleton />
+            <LoaderSkeleton />
+            <LoaderSkeleton />
+            <LoaderSkeleton />
+            <LoaderSkeleton />
+            <LoaderSkeleton />
+          </div>
+        </div>
       </section>
       <section class="Results mt-8">
         <div
@@ -34,7 +47,7 @@
             <h3>
               <strong>{{ result.name }}</strong>
             </h3>
-            <p class="truncate ..."><strong>Text</strong>: {{ result.text }}</p>
+            <p class="truncate ...">{{ result.text }}</p>
             <p
               class="Results__category mt-4"
               :class="setClass('Results__category-', result.route)"
@@ -172,25 +185,37 @@
 import axios from "axios";
 import { ref } from "vue";
 import Button from "../components/Button.vue";
+import LoaderSkeleton from "../components/LoaderSkeleton.vue";
 import TextInput from "../components/TextInput.vue";
 
 export default {
   name: "Index",
   components: {
     Button,
+    LoaderSkeleton,
     TextInput
   },
   setup() {
     const search = ref("");
-    const searchResults = ref({});
+    const searchResults = ref("");
     const detailedResults = ref("");
     const detailedResultsClass = ref("");
+    const loadingResults = ref(false);
     const toggleDetailedResults = ref(false);
 
     const getSearchResults = () => {
-      axios
+      searchResults.value = "";
+      loadingResults.value = true;
+      return axios
         .get(`https://api.open5e.com/search/?text=${search.value}`)
-        .then(response => (searchResults.value = response.data));
+        .then(response => {
+          searchResults.value = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+          loadingResults.value = false;
+        })
+        .then(() => (loadingResults.value = false));
     };
 
     const getDetailedResults = (route, slug) => {
@@ -230,6 +255,7 @@ export default {
       formatRoute,
       getDetailedResults,
       getSearchResults,
+      loadingResults,
       resetResults,
       search,
       searchResults,
