@@ -67,7 +67,6 @@
       <template v-if="detailedResults">
         <button @click="resetResults" class="DetailedResults__close-button" />
         <div class="DetailedResults__container">
-          <!-- Fun data parsing for undocumented data -_- -->
           <h4 class="font-bold text-center">{{ detailedResults.name }}</h4>
           <Button
             @click="toggleDetailedResults = !toggleDetailedResults"
