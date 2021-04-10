@@ -81,7 +81,7 @@
           <!-- <div class="text-center"> -->
           <div class="flex">
             <div class="relative">
-              <div class="DetailedResults__ac" />
+              <div class="DetailedResults__hp" />
               <p
                 class="absolute left-1/2 transform -translate-x-1/2 text-center font-bold top-16"
               >
@@ -89,6 +89,15 @@
                 <br />
                 {{ detailedResults.hit_points }}
               </p>
+            </div>
+            <div class="relative">
+              <div class="DetailedResults__ac">
+                <p>
+                  Armor Class
+                  <br />
+                  {{ detailedResults.armor_class }}
+                </p>
+              </div>
             </div>
           </div>
           <!-- <p>hit_points: {{ detailedResults.hit_points }}</p>

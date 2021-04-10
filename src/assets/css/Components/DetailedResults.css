@@ -29,8 +29,8 @@
     @apply px-4 pt-10 transition ease-in-out duration-300;
   }
 
-  &__ac {
-    @apply bg-red-700 font-bold pt-4 mt-16 mx-auto transform -rotate-45;
+  &__hp {
+    @apply bg-red-700 font-bold pt-4 mt-16 mx-auto transform -rotate-45 ml-10;
     height: 95px;
     width: 95px;
 
@@ -48,6 +48,40 @@
 
     &::after {
       left:50px; 
+    }
+  }
+
+  &__ac {
+    @apply bg-gray-500 relative top-5 left-16;
+    width: 128px;
+    height: 128px;
+
+    &::before,
+    &::after {
+      @apply bg-gray-500;
+      transform: scale(1,1) translateX(5em) rotate(-20deg);
+    }
+
+    &::before,
+    &::after {
+      @apply z-10 border-0;
+      content: "";
+      border-top-right-radius: 100% 100%;
+      border-bottom-right-radius: 125% 100%;
+      width: 80px;
+      height: 80px;
+      left: -12.5%;
+      transform-origin: bottom left;
+      position:absolute;
+      bottom:-42.5%;
+    }
+
+    &::before {
+      transform: scale(1,1) translateX(5em) rotate(-20deg);
+    }
+
+    &::after {
+      transform: scale(-1,1) translateX(-5em) rotate(-20deg);
     }
   }
 
