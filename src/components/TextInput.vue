@@ -21,6 +21,6 @@ export default {
       default: "Kolbold, Fire, Wizards"
     }
   },
-  emits: ["modelValue"]
+  emits: ["update:modelValue"]
 };
 </script>
