@@ -22,18 +22,8 @@
           <Button @click="getSearchResults" />
         </div>
         <p class="italic mt-2">{{ searchResults.count || 0 }} found</p>
-        <!-- Look at better way to do this -->
         <div v-if="loadingResults">
-          <div class="h-screen">
-            <LoaderSkeleton />
-            <LoaderSkeleton />
-            <LoaderSkeleton />
-            <LoaderSkeleton />
-            <LoaderSkeleton />
-            <LoaderSkeleton />
-            <LoaderSkeleton />
-            <LoaderSkeleton />
-          </div>
+          <LoaderSkeleton :cards="6" />
         </div>
       </section>
       <section class="Results mt-8">
@@ -62,7 +52,9 @@
     </form>
     <div
       class="DetailedResults"
-      :class="{ 'DetailedResults--opened': detailedResults }"
+      :class="{
+        'DetailedResults--opened': detailedResultsShelfOpen
+      }"
     >
       <template v-if="detailedResults">
         <button @click="resetResults" class="DetailedResults__close-button" />
@@ -182,6 +174,7 @@
 
 <script>
 import axios from "axios";
+// import { ref } from "vue";
 import { ref } from "vue";
 import Button from "../components/Button.vue";
 import LoaderSkeleton from "../components/LoaderSkeleton.vue";
@@ -198,7 +191,7 @@ export default {
     const search = ref("");
     const searchResults = ref("");
     const detailedResults = ref("");
-    const detailedResultsClass = ref("");
+    const detailedResultsShelfOpen = ref(false);
     const loadingResults = ref(false);
     const toggleDetailedResults = ref(false);
 
@@ -218,9 +211,13 @@ export default {
     };
 
     const getDetailedResults = (route, slug) => {
-      axios.get(`https://api.open5e.com/${route}${slug}`).then(response => {
-        detailedResults.value = response.data;
-      });
+      axios
+        .get(`https://api.open5e.com/${route}${slug}`)
+        .then(response => {
+          detailedResults.value = response.data;
+        })
+        .catch(error => console.log(error))
+        .then(() => (detailedResultsShelfOpen.value = true));
     };
 
     const formatRoute = url => {
@@ -246,11 +243,12 @@ export default {
     const resetResults = () => {
       searchResults.value = "";
       detailedResults.value = "";
+      detailedResultsShelfOpen.value = false;
     };
 
     return {
       detailedResults,
-      detailedResultsClass,
+      detailedResultsShelfOpen,
       formatRoute,
       getDetailedResults,
       getSearchResults,
