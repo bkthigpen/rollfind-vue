@@ -1,0 +1,7 @@
+.Hero {
+    &__logo{
+    @apply inline-block;
+    width: 45px;
+    margin-top: -12px;
+  }
+}

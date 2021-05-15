@@ -5,26 +5,13 @@
       :class="{ 'Index__form--slide-up': searchResults }"
     >
       <section>
-        <h1 class="my-2 text-center">
-          <span class="text-blue-100">Roll</span>
-          <span class="text-yellow-400">Find </span>
-          <img
-            class="Index__vue-logo -ml-2 -mt-2"
-            src="../assets/images/vue.png"
-            alt="Vue"
-          />
-        </h1>
-        <h2 class="w-full text-2xl text-center">
-          Quick search of ⚔️ D&D rules, stats, details, and general info.
-        </h2>
+        <Hero />
         <div class="mt-4 flex">
           <TextInput v-model="search" />
           <Button @click="getSearchResults" />
         </div>
         <p class="italic mt-2">{{ searchResults.count || 0 }} found</p>
-        <div v-if="loadingResults">
-          <LoaderSkeleton :cards="6" />
-        </div>
+        <LoaderSkeleton v-if="loadingResults" :cards="6" />
       </section>
       <section class="Results mt-8">
         <div
@@ -178,12 +165,15 @@ import axios from "axios";
 import { ref } from "vue";
 import Button from "../components/Button.vue";
 import LoaderSkeleton from "../components/LoaderSkeleton.vue";
+import Hero from "../components/Hero.vue";
+
 import TextInput from "../components/TextInput.vue";
 
 export default {
   name: "Index",
   components: {
     Button,
+    Hero,
     LoaderSkeleton,
     TextInput
   },

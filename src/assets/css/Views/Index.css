@@ -1,12 +1,6 @@
 .Index {
   @apply transition ease-in duration-300;
 
-  &__vue-logo{
-    @apply inline-block;
-    width: 45px;
-    margin-top: -12px;
-  }
-
   &__form {
     @apply px-4 py-36 md:py-96 transition ease-in;
   }

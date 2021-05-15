@@ -1,8 +1,10 @@
 @import './tailwind.css';
 @import './Abstracts/Fonts.css';
-@import './Components/Button.css';
+@import './Components/index.css';
+/* @import './Components/Button.css';
+@import './Components/Hero.css';
 @import './Components/LoaderSkeleton.css';
 @import './Components/TextInput.css';
 @import './Components/Results.css';
-@import './Components/DetailedResults.css';
+@import './Components/DetailedResults.css'; */
 @import './Views/Index.css';
