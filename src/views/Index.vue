@@ -8,7 +8,7 @@
         <Hero />
         <div class="mt-4 flex">
           <TextInput v-model="search" />
-          <Button @click="getSearchResults" />
+          <Button @click="getSearchResults(search)" />
         </div>
         <p class="italic mt-2">{{ searchResults.count || 0 }} found</p>
         <LoaderSkeleton v-if="loadingResults" :cards="6" />
@@ -161,12 +161,11 @@
 
 <script>
 import axios from "axios";
-// import { ref } from "vue";
 import { ref } from "vue";
+import useSearch from "../use/useSearch";
 import Button from "../components/Button.vue";
 import LoaderSkeleton from "../components/LoaderSkeleton.vue";
 import Hero from "../components/Hero.vue";
-
 import TextInput from "../components/TextInput.vue";
 
 export default {
@@ -178,27 +177,16 @@ export default {
     TextInput
   },
   setup() {
-    const search = ref("");
-    const searchResults = ref("");
     const detailedResults = ref("");
     const detailedResultsShelfOpen = ref(false);
-    const loadingResults = ref(false);
     const toggleDetailedResults = ref(false);
 
-    const getSearchResults = () => {
-      searchResults.value = "";
-      loadingResults.value = true;
-      return axios
-        .get(`https://api.open5e.com/search/?text=${search.value}`)
-        .then(response => {
-          searchResults.value = response.data;
-        })
-        .catch(error => {
-          console.error(error);
-          loadingResults.value = false;
-        })
-        .then(() => (loadingResults.value = false));
-    };
+    const {
+      getSearchResults,
+      loadingResults,
+      search,
+      searchResults
+    } = useSearch();
 
     const getDetailedResults = (route, slug) => {
       axios
